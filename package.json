@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "bootstrap": "pnpm intall",
+    "bootstrap": "pnpm install",
     "start": "pnpm run start:client & pnpm run start:server",
     "start:client": "pnpm --filter client dev",
     "start:server": "pnpm --filter server start"
