@@ -1,0 +1,14 @@
+{
+  "verbose": true,
+  "preset": "ts-jest",
+  "testEnvironment": "jest-environment-jsdom",
+  "globals": {
+    "ts-jest": {
+      "tsconfig": "tsconfig.json"
+    }
+  },
+  "moduleNameMapper": {
+    "@/(.*)": "<rootDir>/src/$1",
+    "\\.(css|less)$": "identity-obj-proxy"
+  }
+}
