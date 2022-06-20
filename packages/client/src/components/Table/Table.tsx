@@ -63,7 +63,7 @@ function Table<T>(props: TableProps<T>) {
         : (
           <tr className='table-row'>
             <th rowSpan={5} colSpan={props.columns.length} className='table-empty-content'>
-              No data
+              No Data
             </th>
           </tr>
         )}

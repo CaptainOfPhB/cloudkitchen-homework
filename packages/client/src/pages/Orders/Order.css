@@ -1,3 +1,7 @@
+* {
+  font-family: serif;
+}
+
 label {
   margin: 8px;
 }
@@ -5,9 +9,14 @@ label {
 input {
   height: 20px;
   padding: 6px 10px;
-  border-radius: 4px;
-  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  border: 1px solid #999999;
   background-color: transparent;
+}
+
+input::placeholder {
+  font-size: 14px;
+  font-family: serif;
 }
 
 input:focus {
