@@ -4,6 +4,7 @@ import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import './Order.css';
 import { Order } from './types';
 import Table from '@/components/Table';
+import debounce from '@/utils/debounce';
 
 function Orders() {
   const [error, setError] = useState<string>();
@@ -49,7 +50,6 @@ function Orders() {
   }
 
   function onInputChange(e: ChangeEvent<HTMLInputElement>) {
-    // TODO: use debounce
     const input = e.target.value;
     const { error, price } = isInputValid(input);
     setError(error);
@@ -80,7 +80,7 @@ function Orders() {
         type='text'
         name='order_price'
         style={{ width: 250 }}
-        onChange={onInputChange}
+        onChange={debounce(onInputChange)}
         placeholder='please enter order price here'
       />
       {error && <span style={{ color: 'red', marginLeft: 10 }}>{error}</span>}
