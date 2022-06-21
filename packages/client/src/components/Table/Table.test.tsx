@@ -47,7 +47,7 @@ it('should call render callback with different params according to key and dataI
   ];
   const dataSource = [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }];
   render(<Table dataSource={dataSource} columns={columns} rowKey='id' />);
-  expect(renderWhenKeyExist).toHaveBeenCalledTimes(2);
+  expect(renderWhenDataIndexExist).toHaveBeenCalledTimes(2);
   expect(renderWhenKeyExist).toHaveBeenCalledTimes(2);
   expect(renderWhenDataIndexExist).toBeCalledWith(dataSource[0].name, dataSource[0], 0);
   expect(renderWhenKeyExist).toBeCalledWith(dataSource[0], 0);
