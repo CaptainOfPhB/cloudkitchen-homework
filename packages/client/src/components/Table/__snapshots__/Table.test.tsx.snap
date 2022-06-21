@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render 'No Data' when list is empty 1`] = `
+<th
+  class="table-empty-content"
+  colspan="0"
+  rowspan="5"
+>
+  No Data
+</th>
+`;
+
+exports[`should render columns and dataSource 1`] = `
+<table
+  class="table-component"
+  data-testid="table-component"
+>
+  <tbody>
+    <tr
+      class="table-column-title"
+    >
+      <th
+        class="table-cell"
+      >
+        id
+      </th>
+      <th
+        class="table-cell"
+      >
+        name
+      </th>
+    </tr>
+    <tr
+      class="table-row"
+    >
+      <td
+        class="table-cell"
+      >
+        1
+      </td>
+      <td
+        class="table-cell"
+      >
+        John
+      </td>
+    </tr>
+    <tr
+      class="table-row"
+    >
+      <td
+        class="table-cell"
+      >
+        2
+      </td>
+      <td
+        class="table-cell"
+      >
+        Jane
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`should render table on screen 1`] = `
+<table
+  class="table-component"
+  data-testid="table-component"
+>
+  <tbody>
+    <tr
+      class="table-column-title"
+    />
+    <tr
+      class="table-row"
+    >
+      <th
+        class="table-empty-content"
+        colspan="0"
+        rowspan="5"
+      >
+        No Data
+      </th>
+    </tr>
+  </tbody>
+</table>
+`;
