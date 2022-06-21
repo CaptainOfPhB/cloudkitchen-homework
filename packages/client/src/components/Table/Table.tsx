@@ -1,12 +1,21 @@
 import './Table.css';
 import type { CSSProperties, Key, ReactNode } from 'react';
 
-interface Column<T> {
-  dataIndex?: keyof T;
+interface ColumnWithDataIndex<T = {}> {
+  dataIndex: keyof T;
   title: ReactNode;
   style?: CSSProperties;
-  render?: (value: any, record: T) => ReactNode;
+  render?: (value: any, record: T, index: number) => ReactNode;
 }
+
+interface ColumnWithKey<T = {}> {
+  key: string;
+  title: ReactNode;
+  style?: CSSProperties;
+  render?: (record: T, index: number) => ReactNode;
+}
+
+export type Column<T> = ColumnWithDataIndex<T> | ColumnWithKey<T>;
 
 interface TableProps<T> {
   dataSource: T[];
@@ -17,7 +26,7 @@ interface TableProps<T> {
 
 function Table<T>(props: TableProps<T>) {
   return (
-    <table className='table-component'>
+    <table className='table-component' data-testid='table-component'>
       {props.header && (
         <thead>
         <tr>
@@ -30,30 +39,32 @@ function Table<T>(props: TableProps<T>) {
       <tbody>
       <tr className='table-column-title'>
         {props.columns.map(column => {
+          const key = (column as ColumnWithDataIndex).dataIndex || (column as ColumnWithKey).key;
           return (
-            <th
-              className='table-cell'
-              style={column.style}
-              key={column.dataIndex as string}
-            >
+            <th className='table-cell' style={column.style} key={key}>
               {column.title}
             </th>
           );
         })}
       </tr>
       {props.dataSource.length
-        ? props.dataSource.map(each => {
+        ? props.dataSource.map((each, index) => {
           return (
             <tr key={each[props.rowKey] as unknown as Key} className='table-row'>
               {props.columns.map(column => {
-                const value = each[column.dataIndex as keyof T];
+                const key = (column as ColumnWithDataIndex).dataIndex || (column as ColumnWithKey).key;
                 return (
-                  <td
-                    className='table-cell'
-                    style={column.style}
-                    key={column.dataIndex as string}
-                  >
-                    <>{column.render ? column.render(value, each) : value}</>
+                  <td className='table-cell' style={column.style} key={key}>
+                    <>
+                      {column.render
+                        ? 'dataIndex' in column
+                          ? column.render(each[column.dataIndex], each, index)
+                          : column.render(each, index)
+                        : 'dataIndex' in column
+                          ? each[column.dataIndex]
+                          : null
+                      }
+                    </>
                   </td>
                 );
               })}
